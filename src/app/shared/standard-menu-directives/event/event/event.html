@@ -1,0 +1,26 @@
+<div class="clearfix">
+    <div class="col-lg-12" data-ng-if="EventCtrl.ePage.Masters.Event.ListSource.length > 0 ">
+        <ul class="event mt-10">
+            <li class="event-inverted" data-ng-repeat="x in EventCtrl.ePage.Masters.Event.ListSource">
+                <div class="clearfix text-center">
+                    <span class="event-date">{{x.EventDateTime | date:'dd-MMM-yyyy'}}</span>
+                </div>
+                <div class="event-panel">
+                    <div class="event-header" ng-class="x.EventCSS.bgColor">{{x.EventName || '-'}}</div>
+                    <div class="event-body"> 
+                       <div class="event-body-list" ng-repeat="y in x.RelatedDetails track by $index">{{y.UIField}} : {{y.Value}}</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-12" data-ng-if="EventCtrl.ePage.Masters.Event.ListSource.length == 0 ">
+        <div class="row text-center p-20">
+            <i>No Records...!</i>
+        </div>
+    </div>
+    <!-- Loading -->
+    <div class="clearfix p-30 text-center" data-ng-if="EventCtrl.ePage.Masters.Spinner">
+        <i class="fa fa-spin fa-spinner" style="font-size: 18px;"></i>
+    </div>
+</div>

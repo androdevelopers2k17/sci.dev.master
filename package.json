@@ -1,0 +1,14 @@
+{
+  "name": "SCI",
+  "description": "SCI Test UI",
+  "version": "1.0.0",
+  "author": "Androdevelopers",
+  "devDependencies": {},
+  "dependencies": {
+    "angular": "^1.5.8",
+    "gulp": "^3.9.1",
+    "gulp-inject-string": "^1.1.1",
+    "gulp-json-modify": "^1.0.2",
+    "version": "^0.1.2"
+  }
+}
