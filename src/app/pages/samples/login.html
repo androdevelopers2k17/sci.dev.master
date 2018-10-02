@@ -3,23 +3,43 @@
 
 <head>
   <!-- Required meta tags -->
-  <meta charset="utf-8">
+
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+  <meta name="description" content="blank page" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Purple Admin</title>
+
+  <!--Beyond Admin-->
+  <link href="assets/css/beyond.min.css" rel="stylesheet" />
+  <link ng-href="{{settings.skin}}" rel="stylesheet" type="text/css" />
+  <title>Saraswathi Career Institution</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../../node_modules/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../../node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css">
+  <link rel="stylesheet" href="assets/css/materialdesignicons.css">
+  <link rel="stylesheet" href="assets/css/perfect-scrollbar.min.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
-  <link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/css-stars.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css" />
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../images/favicon.png" />
-</head>
+  <link rel="shortcut icon" href="assets/assets/images/favicon.png" />
+  <!-- Select2 dropdown-->
+  <link href="lib/select2/select2.min.css" rel="stylesheet" />
+  <!--Alert message Toastr-->
+  <link href="lib/angular/angular-toastr/dist/angular-toastr.css" rel="stylesheet" type="text/css">
 
-<body>
+  <!--Custom Styles-->
+  <link href="assets/css/custom/new-custom-ui.css" rel="stylesheet" />
+  <link href="assets/css/custom/custom-beyond.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/custom/bootstrap-margin-padding.css" rel="stylesheet" type="text/css" />
+</head><body>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper">
       <div class="row">
@@ -68,16 +88,21 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="../../node_modules/popper.js/dist/umd/popper.min.js"></script>
-  <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="../../node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
-  <script src="../../js/off-canvas.js"></script>
-  <script src="../../js/misc.js"></script>
-  <!-- endinject -->
+ <!-- plugins:js -->
+ <script src="lib/jquery/jquery.min.js"></script>
+ <script src="lib/js/popper.min.js"></script>
+ <script src="lib/js/bootstrap.min.js"></script>
+ <script src="lib/js/perfect-scrollbar.jquery.min.js"></script>
+ <!-- endinject -->
+ <!-- Plugin js for this page-->
+ <script src="lib/js/Chart.min.js"></script>
+ <!-- End plugin js for this page-->
+ <!-- inject:js -->
+ <script src="lib/js/off-canvas.js"></script>
+ <script src="lib/js/misc.js"></script>
+ <!-- endinject -->
+ <!-- Custom js for this page-->
+ <script src="lib/js/dashboard.js"></script>
+ <!-- End custom js for this page-->
 </body>
-
 </html>
