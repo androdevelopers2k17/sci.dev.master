@@ -3,25 +3,14 @@
 
     angular
         .module("Application")
-        .controller("EAxisController", EAxisController);
+        .controller("SciController", SciController);
 
-    EAxisController.$inject = ["helperService", "authService"];
+    SciController.$inject = [];
 
-    function EAxisController(helperService, authService) {
+    function SciController() {
         /* jshint validthis: true */
-        var EAxisCtrl = this;
+        var SciCtrl = this;
 
-        function Init() {
-            EAxisCtrl.ePage = {
-                "Title": "",
-                "Prefix": "eAxis",
-                "Masters": {},
-                "Meta": helperService.metaBase(),
-                "Entities": {}
-            };
-
-            EAxisCtrl.ePage.Masters.MenuVisibleType = authService.getUserInfo().Menu.VisibleType;
-        }
 
         Init();
     }
