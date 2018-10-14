@@ -51,9 +51,9 @@ h1, h2, h3, h4, h5,
 }
 
 .site-navbar-light .navbar-nav > .nav-item > .nav-link {
-  font-size: 15px;
+  font-size:18px;
   text-transform: uppercase;
-  letter-spacing: .2em;
+  letter-spacing: .1em;
   padding-top: 10px;
   padding-bottom: 30px;
   padding-left: 0px;
