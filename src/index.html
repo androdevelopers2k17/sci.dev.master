@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="dashApp">
 
 <head>
   <!-- Required meta tags -->
@@ -31,16 +31,11 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="assets/assets/images/favicon.png" />
-  <!-- Select2 dropdown-->
-  <link href="lib/select2/select2.min.css" rel="stylesheet" />
-  <!--Alert message Toastr-->
-  <link href="lib/angular/angular-toastr/dist/angular-toastr.css" rel="stylesheet" type="text/css">
 
   <!--Custom Styles-->
   <link href="assets/css/custom/new-custom-ui.css" rel="stylesheet" />
   <link href="assets/css/custom/custom-beyond.css" rel="stylesheet" type="text/css" />
   <link href="assets/css/custom/bootstrap-margin-padding.css" rel="stylesheet" type="text/css" />
-  <link href="app/shared/app.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <div class="container-scroller">
@@ -292,7 +287,8 @@
           </div>
         </nav>
         <!-- partial -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" ng-view></div>
+        <!-- <div class="content-wrapper">
           <div class="row">
             <div class="col-md-4 stretch-card grid-margin">
               <div class="card bg-gradient-warning text-white">
@@ -688,7 +684,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
@@ -721,5 +717,8 @@
   <!-- Custom js for this page-->
   <script src="lib/js/dashboard.js"></script>
   <!-- End custom js for this page-->
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular/angular-route.min.js"></script>
+  <script src="shared/dashapp.router.js"></script>
 </body>
 </html>

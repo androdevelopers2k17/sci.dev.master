@@ -54,9 +54,9 @@ h1, h2, h3, h4, h5,
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: .2em;
-  padding-top: 30px;
+  padding-top: 10px;
   padding-bottom: 30px;
-  padding-left: 20px;
+  padding-left: 0px;
   padding-right: 20px;
 }
 
