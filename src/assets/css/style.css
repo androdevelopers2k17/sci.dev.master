@@ -9857,6 +9857,11 @@ mark,
 .img-fluid {
   max-width: 120%;
   height: auto;
+  
+}
+.img-fluid-welcome {
+  width: 600px;
+  height: 600px;
 }
 
 .img-thumbnail {

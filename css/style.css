@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5,
 }
 
 .site-navbar-light .navbar-nav > .nav-item > .nav-link {
-  font-size: 13px;
+  font-size: 15px;
   text-transform: uppercase;
   letter-spacing: .2em;
   padding-top: 10px;
@@ -495,6 +495,14 @@ textarea.form-control {
 }
 
 .site-section .site-sub-title {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: .5em;
+  color: #d4d4d4;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+}
+.head-title {
   font-size: 16px;
   text-transform: uppercase;
   letter-spacing: .5em;
@@ -973,4 +981,23 @@ textarea.form-control {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px;
   }
+}
+.site-welcome {
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(3px)
+}
+.para{
+  font-family: "Raleway", sans-serif;
+  font-size: 21px;
+  line-height: 1.6;
+  color: #b8b8b8;
+  text-align: justify;
+}
+
+.sec-head {
+  font-family: "Raleway", sans-serif;
+  font-size: 30px;
+  line-height: 1.6;
+  color: #b8b8b8;
 }
