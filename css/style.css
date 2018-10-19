@@ -1009,3 +1009,7 @@ textarea.form-control {
   line-height: 1.6;
   color: #b8b8b8;
 }
+.file-field.big .file-path-wrapper {
+  height: 3.2rem; }
+  .file-field.big .file-path-wrapper .file-path {
+    height: 3rem; }
