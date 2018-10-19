@@ -1,11 +1,20 @@
-var Application = angular.module('Application', []);
+var Application = angular.module('Application',[]);
 
 // Define the `PhoneListController` controller on the `phonecatApp` module
 Application.controller('AppController', function AppController($scope) {
     AppCtrl=$scope;
-    console.log(AppCtrl);
-    debugger
-    AppCtrl.SSC=function SSC()
+    AppCtrl.SSC=SSC;
+    AppCtrl.Register=Register;
+    function Register()
+    {
+        debugger
+        MstStudent.readStudents().then(function successCallback(response){
+            console.log(response.data.records);
+        }, function errorCallback(response){
+            console.log("Unable to read record.");
+        });
+    }
+    function SSC()
   {
     if(AppCtrl.isUG)
     {
@@ -26,6 +35,23 @@ Application.controller('AppController', function AppController($scope) {
         AppCtrl.MSD_EDU1QUAL=""
   }
 });
+Application.factory("MstStudent", function($http){
+ 
+    var factory = {};
+ 
+    // read all products
+    factory.readStudents = function(){
+        return $http({
+            method: 'POST',
+            url: 'http://saraswathicareerinstitute.com/api/MstStudent/read.php'
+        });
+    };
+     
+    // createProduct will be here
+     
+    return factory;
+});
+ 
 Application.directive("numbersOnly", NumbersOnly);
 function NumbersOnly() {
     return {
