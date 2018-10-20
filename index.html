@@ -20,12 +20,20 @@
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/icomoon.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/toastr.css">
+  <link rel="stylesheet" href="css/custom.css">
 
   <script src="lib/angular/angular.min.js"></script>
   <script src="lib/angular/angular-route.min.js"></script>
   <script src="lib/angular/angular-messages.min.js"></script>
   <script src="lib/angular/angular-material.min.js"></script>
+  <script src="lib/angular/angular-uuid.js"></script>
+  
+  <script src="lib/angular/angular-animate.js"></script>
+  <script src="js/angular-toastr.js"></script>
+  <script src="js/angular-toastr.tpls.js"></script>
   <script src="shared/app.controller.js"></script>
+  <script src="shared/app.factory.js"></script>
 </head>
 
 <body data-spy="scroll" data-target="#site-navbar" data-offset="200">
@@ -46,8 +54,8 @@
           <li class="nav-item"><a href="#section-Exams" class="nav-link">Exams</a></li>
           <li class="nav-item"><a href="#section-Assessment" class="nav-link">Assessment Center</a></li>
           <li class="nav-item"><a href="#section-Contact" class="nav-link">Contact Us</a></li>
-          <li class="nav-item"><a href="" target="_blank" class="nav-link" data-toggle="modal" data-target="#reservationModal">Admission</a></li>
-          <li class="nav-item"><a href="" target="_blank" class="nav-link" data-toggle="modal" data-target="#reservationModal"><i
+          <li class="nav-item"><a href="#"  class="nav-link" data-toggle="modal" data-target="#reservationModal">Admission</a></li>
+          <li class="nav-item"><a href="#"  class="nav-link" data-toggle="modal" data-target="#reservationModal"><i
                 class="fa fa-user-o" style="font-size:20px;"></i></a></li>
         </ul>
       </div>
@@ -468,9 +476,9 @@
     </div>
   </section>
   <!-- END Contact section -->
-  <!-- Registration Popup -->
-  <!-- Modal -->
-  <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel"
+ <registration></registration>
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -483,238 +491,16 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <small>CLOSE </small><span aria-hidden="true">&times;</span>
               </button>
-              <h1 class="mb-4">Admission Form</h1>
-              <div class="well">
-                <h3>Personal Details</h3>
-              </div>
+              <h1 class="mb-4">Login</h1>
               <form action="#" method="post">
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <label for="m_fname">Your Name</label>
+                    <label for="m_fname">User Name</label>
                     <input type="text" class="form-control" id="m_fname">
                   </div>
                   <div class="col-md-6 form-group">
-                    <label for="m_lname">Father Name</label>
+                    <label for="m_lname">Password</label>
                     <input type="text" class="form-control" id="m_lname">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class='col-md-6'>
-                    <div class="form-group">
-                      <label for="m_date">DOB</label>
-                      <input type="text" class="form-control" id="m_date">
-                    </div>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="m_people">Gender</label>
-                    <select name="" id="m_people" class="form-control">
-                      <option value="">-</option>
-                      <option value="M">Male</option>
-                      <option value="F">Female</option>
-                      <option value="T">Transgender</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 form-group">
-                    <label for="m_fname">Contact #</label>
-                    <input type="text" class="form-control numbers-only" ng-model="A" id="m_phone">
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="m_lname">Alternate Contact #</label>
-                    <input type="text" class="form-control" id="m_phone">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class='col-md-12'>
-                    <div class="form-group">
-                      <label for="m_date">Email-ID</label>
-                      <input type="email" class="form-control" id="m_email">
-                    </div>
-                  </div>
-                </div>
-                <div class="well">
-                  <h3>Educational Details</h3>
-                </div>
-                <div class="row">
-                  <div class='col-md-4 form-group'>
-                    <label for="m_date">SSC
-                      <input type="checkbox" ng-model="isSSC" class="checkbox" id="m_email" data-ng-change="SSC();"></label>
-                  </div>
-                  <div class='col-md-4 form-group '>
-                    <label for="m_date">HSC
-                      <input type="checkbox" ng-model="isHSC" class="checkbox" id="m_email" data-ng-change="SSC();"></label>
-                  </div>
-                  <div class='col-md-4 form-group '>
-                    <label for="m_date">UG<input type="checkbox" ng-model="isUG" class="checkbox" id="m_email"
-                        data-ng-change="SSC();"></label>
-                  </div>
-                </div>
-                <div class="row" data-ng-if="isSSC">
-                  <div class='col-md-12 form-group'>
-                    <h4>SSC Details</h4>
-                  </div>
-                  <div class='col-md-4 form-group'>
-                    <label for="m_date">Qualification
-                      <input type="text" disabled="true" ng-model="MSD_EDU1QUAL" class="form-control" id="m_email"></label>
-                  </div>
-                  <div class='col-md-4 form-group'>
-                    <label for="m_date">Medium
-                      <select name="" id="m_people" class="form-control" ng-model="MSD_EDU1MED">
-                        <option value="">-</option>
-                        <option value="T">Tamil</option>
-                        <option value="E">English</option>
-                      </select>
-                  </div>
-                  <div class='col-md-4 form-group'>
-                    <label for="m_date">Board
-                      <select name="" id="m_people" class="form-control" ng-model="MSD_EDU1BOARD">
-                        <option value="">-</option>
-                        <option value="SB">State Board</option>
-                        <option value="CBSE">CBSE</option>
-                        <option value="INT">International</option>
-                      </select>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">Passed Out
-                      <input type="text" numbers-only ng-model="MSD_EDU1YEAR" class="form-control" id="m_email"
-                        maxlength="4"></label>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">Percentage (%)</label>
-                    <Span><input type="text" numbers-only ng-model="MSD_EDU1PERCENTAGE" class="form-control" id="m_email"
-                        maxlength="3"></Span>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">School Name
-                      <input type="text" ng-model="MSD_EDU1SCHOOL" class="form-control" id="m_email"></label>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">City
-                      <input type="text" ng-model="MSD_EDU1CITY" class="form-control" id="m_email"></label>
-                  </div>
-                </div>
-                <div class="row" data-ng-if="isHSC">
-                  <div class='col-md-12 form-group'>
-                    <h4>HSC Details</h4>
-                  </div>
-                  <div class='col-md-4 form-group'>
-                    <label for="m_date">Qualification
-                      <input type="text" disabled="true" ng-model="MSD_EDU2QUAL" class="form-control" id="m_email"></label>
-                  </div>
-                  <div class='col-md-4 form-group'>
-                    <label for="m_date">Medium
-                      <select name="" id="m_people" class="form-control" ng-model="MSD_EDU2MED">
-                        <option value="">-</option>
-                        <option value="T">Tamil</option>
-                        <option value="E">English</option>
-                      </select>
-                  </div>
-                  <div class='col-md-4 form-group'>
-                    <label for="m_date">Board
-                      <select name="" id="m_people" class="form-control" ng-model="MSD_EDU2BOARD">
-                        <option value="">-</option>
-                        <option value="SB">State Board</option>
-                        <option value="CBSE">CBSE</option>
-                        <option value="INT">International</option>
-                      </select>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">Passed Out
-                      <input type="text" numbers-only ng-model="MSD_EDU2YEAR" class="form-control" id="m_email"
-                        maxlength="4"></label>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">Percentage (%)</label>
-                    <Span><input type="text" numbers-only ng-model="MSD_EDU2PERCENTAGE" class="form-control" id="m_email"
-                        maxlength="3"></Span>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">School Name
-                      <input type="text" ng-model="MSD_EDU2SCHOOL" class="form-control" id="m_email"></label>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">City
-                      <input type="text" ng-model="MSD_EDU2CITY" class="form-control" id="m_email"></label>
-                  </div>
-                </div>
-                <div class="row" data-ng-if="isUG">
-                  <div class='col-md-12 form-group'>
-                    <h4>UG Details</h4>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">Qualification
-                      <input type="text" ng-model="MSD_EDU3QUAL" class="form-control" id="m_email"></label>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">Stream
-                      <select name="" id="m_people" class="form-control" ng-model="MSD_EDU3MED">
-                        <option value="">-</option>
-                        <option value="T">Tamil</option>
-                        <option value="E">English</option>
-                      </select>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">Passed Out
-                      <input type="text" numbers-only ng-model="MSD_EDU3YEAR" class="form-control" id="m_email"
-                        maxlength="4"></label>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">Percentage (%)</label>
-                    <Span><input type="text" numbers-only ng-model="MSD_EDU3PERCENTAGE" class="form-control" id="m_email"
-                        maxlength="3"></Span>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">College Name
-                      <input type="text" ng-model="MSD_EDU3SCHOOL" class="form-control" id="m_email"></label>
-                  </div>
-                  <div class='col-md-6 form-group'>
-                    <label for="m_date">City
-                      <input type="text" ng-model="MSD_EDU3CITY" class="form-control" id="m_email"></label>
-                  </div>
-                </div>
-                <div class="row">
-                    <div class='col-md-12 form-group'>
-                      <h4>Other Details</h4>
-                    </div>
-                    <div class='col-md-6 form-group'>
-                      <label for="m_date">Achievements
-                        <input type="text" ng-model="MSD_ACHIEVEMENTS" class="form-control" id="m_email"></label>
-                    </div>
-                    <div class='col-md-6 form-group'>
-                      <label for="m_date">Comments
-                        <input type="text" ng-model="MSD_COMMENTS" class="form-control" id="m_email"></label>
-                    </div>
-                    <div class='col-md-6 form-group'>
-                      <center>
-                        <label for="m_date">Upload Your Photo</label>
-                        <div class="file-field">
-                          <div class="mb-4">
-                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle z-depth-1-half avatar-pic"
-                              alt="example placeholder avatar" height="120px" width="120px">
-                          </div>
-                          <div class="d-flex justify-content-center">
-                            <div class="btn btn-mdb-color btn-rounded float-left">
-                              <input type="file">
-                            </div>
-                          </div>
-                      </center>
-                    </div>
-                  <div class='col-md-6 form-group'>
-                    <center>
-                      <label for="m_date">Upload ID Proof</label>
-                      <div class="mb-4">
-                        <div class="file-field">
-                          <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle z-depth-1-half avatar-pic"
-                            alt="example placeholder avatar" height="120px" width="120px">
-                        </div>
-                        <div class="d-flex justify-content-center">
-                          <div class="btn btn-mdb-color btn-rounded float-left">
-                            <input type="file">
-                          </div>
-                        </div>
-                      </div>
-                    </center>
                   </div>
                 </div>
             </div>

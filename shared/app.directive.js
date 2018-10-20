@@ -18,8 +18,15 @@
         .directive('noSpecialChar', NoSpecialChar)
         .directive('alphabetsOnly', AlphabetsOnly)
         .directive('noSpecialExceptComma', NoSpecialExceptComma)
-        .directive('numbersOnlyDot', NumbersOnlyDot);
+        .directive('numbersOnlyDot', NumbersOnlyDot)
+        .directive('registration', Registration);
 
+        function Registration(){
+                return {
+                    templateUrl: 'shared/registration.html',
+                    //controller: 'RegistrationController'
+                };
+        }
 
     function NumbersOnly() {
         return {
@@ -180,165 +187,6 @@
             }
         }
     }
-
-    // Load Script Dynamically
-    function LoadScript($location) {
-        var _exports = {
-            restrict: 'AE',
-            link: Link
-        };
-
-        return _exports;
-
-        function Link(scope, element, attr) {
-            var _location = $location.path();
-
-            if (_location.indexOf(attr.app) != -1) {
-                if (_location.indexOf(attr.module) != -1) {
-                    var script = document.createElement('script');
-                    script.type = 'text/javascript';
-                    script.src = attr.src;
-                    document.body.appendChild(script);
-                    element.remove();
-                } else {
-                    element.remove();
-                }
-            }
-        }
-    }
-
-    // Load Controller Dynamically
-    function LoadDynamicCtrl($parse, $compile) {
-        var _exports = {
-            restrict: 'AE',
-            terminal: true,
-            priority: 100000,
-            link: Link
-        };
-
-        return _exports;
-
-        function Link(scope, elem, attr) {
-            var name = $parse(elem.attr('load-dynamic-ctrl'))(scope);
-            elem.removeAttr('load-dynamic-ctrl');
-            elem.attr('data-ng-controller', name);
-            $compile(elem)(scope);
-        }
-    }
-
-    function PageTitle($rootScope, $timeout) {
-        return {
-            link: function (scope, element) {
-                var listener = function (event, toState) {
-                    var title = 'MyHub Plus';
-                    if (toState.ncyBreadcrumb && toState.ncyBreadcrumb.label)
-                        title = toState.ncyBreadcrumb.label;
-                    $timeout(function () {
-                        element.text(title);
-                    }, 0, false);
-                };
-                $rootScope.$on('$stateChangeSuccess', listener);
-            }
-        };
-    }
-
-    function SidebarCollapse() {
-        return {
-            restrict: 'AC',
-            template: '<i class="collapse-icon fa fa-bars"></i>',
-            link: function (scope, el, attr) {
-                el.on('click', function () {
-                    if (!$('#sidebar').is(':visible'))
-                        $("#sidebar").toggleClass("hide");
-                    $("#sidebar").toggleClass("menu-compact");
-                    $(".sidebar-collapse").toggleClass("active");
-                    var isCompact = $("#sidebar").hasClass("menu-compact");
-
-                    if ($(".sidebar-menu").closest("div").hasClass("slimScrollDiv")) {
-                        $(".sidebar-menu").slimScroll({
-                            destroy: true
-                        });
-                        $(".sidebar-menu").attr('style', '');
-                    }
-                    if (isCompact) {
-                        $(".open > .submenu")
-                            .removeClass("open");
-                    } else {
-                        if ($('.page-sidebar').hasClass('sidebar-fixed')) {
-                            var position = (readCookie("rtl-support") || location.pathname == "/index-rtl-fa.html" || location.pathname == "/index-rtl-ar.html") ? 'right' : 'left';
-                            $('.sidebar-menu').slimscroll({
-                                height: $(window).height() - 90,
-                                position: position,
-                                size: '3px',
-                                color: themeprimary
-                            });
-                        }
-                    }
-                    //Slim Scroll Handle
-                });
-            }
-        };
-    }
-
-    function SidebarMenu() {
-        return {
-            restrict: 'AC',
-            link: function (scope, el, attr) {
-                el.find('li.active').parents('li').addClass('active open');
-
-                el.on('click', 'a', function (e) {
-                    //e.preventDefault();
-                    var isCompact = $("#sidebar").hasClass("menu-compact");
-                    var menuLink = $(e.target);
-                    if ($(e.target).is('span'))
-                        menuLink = $(e.target).closest('a');
-                    if (!menuLink || menuLink.length == 0)
-                        return;
-                    if (!menuLink.hasClass("menu-dropdown")) {
-                        if (isCompact && menuLink.get(0).parentNode.parentNode == this) {
-                            var menuText = menuLink.find(".menu-text").get(0);
-                            if (e.target != menuText && !$.contains(menuText, e.target)) {
-                                return false;
-                            }
-                        }
-                        return;
-                    }
-                    var submenu = menuLink.next().get(0);
-                    if (!$(submenu).is(":visible")) {
-                        var c = $(submenu.parentNode).closest("ul");
-                        if (isCompact && c.hasClass("sidebar-menu"))
-                            return;
-                        c.find("* > .open > .submenu")
-                            .each(function () {
-                                if (this != submenu && !$(this.parentNode).hasClass("active"))
-                                    $(this).slideUp(200).parent().removeClass("open");
-                            });
-                    }
-                    if (isCompact && $(submenu.parentNode.parentNode).hasClass("sidebar-menu"))
-                        return false;
-                    $(submenu).slideToggle(200).parent().toggleClass("open");
-                    return false;
-                });
-            }
-        };
-    }
-
-    function LoadingContainer() {
-        return {
-            restrict: 'AC',
-            link: function (scope, el, attrs) {
-                el.removeClass('app-loading');
-                scope.$on('$stateChangeStart', function (event) {
-                    el.addClass('app-loading');
-                });
-                scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
-                    event.targetScope.$watch('$viewContentLoaded', function () {
-                        el.removeClass('app-loading ');
-                    });
-                });
-            }
-        };
-    }
     
     // no special Chars
     function NoSpecialChar() {
@@ -365,24 +213,6 @@
                 });
             }
         };
-        // return {
-        //   restrict: 'A',
-        //   require: 'ngModel',
-        //   link: function (scope, elem, attrs, ngModel){
-        //             ngModel.$parsers.push(function(viewValue) {
-        //             var reg = /^[^`~!@#$%\^&*()_+={}|[\]\\:',;"<>?.]*$/;
-        //             // if view values matches regexp, update model value
-        //             if (viewValue.match(reg)) {
-        //               return viewValue;
-        //             }
-        //             // keep the model value as it is
-        //             var transformedValue = ngModel.$modelValue;
-        //             ngModel.$setViewValue(transformedValue);
-        //             ngModel.$render();
-        //             return transformedValue;
-        //         });  
-        //     }
-        // };
     }
 
     function AlphabetsOnly() {
